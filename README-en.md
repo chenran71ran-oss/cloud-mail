@@ -1,148 +1,111 @@
 <p align="center">
-    <img src="doc/demo/logo.png" width="80px" />
-    <h1 align="center">Cloud Mail</h1>
-    <p align="center">A simple, responsive email service designed to run on Cloudflare Workers 🎉</p> 
-    <p align="center">
-       <a href="/README.md" style="margin-left: 5px">简体中文</a> | English 
-    </p>
-    <p align="center">
-        <a href="https://github.com/maillab/cloud-mail/tree/main?tab=MIT-1-ov-file" target="_blank" >
-            <img src="https://img.shields.io/badge/license-MIT-green" />
-        </a>    
-        <a href="https://github.com/maillab/cloud-mail/releases" target="_blank" >
-            <img src="https://img.shields.io/github/v/release/maillab/cloud-mail" alt="releases" />
-        </a>  
-        <a href="https://github.com/maillab/cloud-mail/issues" >
-            <img src="https://img.shields.io/github/issues/maillab/cloud-mail" alt="issues" />
-        </a>  
-        <a href="https://github.com/maillab/cloud-mail/stargazers" target="_blank">
-            <img src="https://img.shields.io/github/stars/maillab/cloud-mail" alt="stargazers" />
-        </a>  
-        <a href="https://github.com/maillab/cloud-mail/forks" target="_blank" >
-            <img src="https://img.shields.io/github/forks/maillab/cloud-mail" alt="forks" />
-        </a>
-    </p>
-    <p align="center">
-        <a href="https://trendshift.io/repositories/20459" target="_blank" >
-            <img src="https://trendshift.io/api/badge/repositories/20459" alt="trendshift" >
-        </a>
-    </p>
+  <img src="doc/demo/logo.png" width="88" alt="Cloud Mail logo">
 </p>
 
-## Description
-With only one domain, you can create multiple different email addresses, similar to major email platforms. This project can be deployed on Cloudflare Workers to reduce server costs and build your own email service.
-## Project Showcase
+<h1 align="center">Cloud Mail</h1>
 
-- [Live Demo](https://skymail.ink)<br>
-- [Deployment Guide](https://doc.skymail.ink/en/)<br>
+<p align="center">Your domain. Your mailbox.</p>
+<p align="center">Self-hosted email on Cloudflare Workers, with a modern web interface, domain-based receiving and configurable sending.</p>
 
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-22c55e" alt="MIT License"></a>
+  <a href="https://developers.cloudflare.com/workers/"><img src="https://img.shields.io/badge/Cloudflare-Workers-f38020" alt="Cloudflare Workers"></a>
+  <a href="https://vuejs.org/"><img src="https://img.shields.io/badge/Vue-3-42b883" alt="Vue 3"></a>
+  <a href="https://hono.dev/"><img src="https://img.shields.io/badge/API-Hono-e36002" alt="Hono API"></a>
+</p>
 
-| ![](/doc/demo/demo1.png) | ![](/doc/demo/demo2.png) |
-|--------------------------|--------------------------|
-| ![](/doc/demo/demo3.png) | ![](/doc/demo/demo4.png) |
+<p align="center">
+  <a href="README.md">简体中文</a> · English
+  <br>
+  <a href="docs/deployment.md">Deployment</a> ·
+  <a href="docs/README.md">Documentation</a> ·
+  <a href="docs/troubleshooting.md">FAQ</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
+
+> This repository is a personal fork of [maillab/cloud-mail](https://github.com/maillab/cloud-mail). [chenran71ran-oss](https://github.com/chenran71ran-oss/cloud-mail) maintains deployment configuration and documentation here. Core functionality comes from upstream; the original attribution and MIT license are preserved.
+
+## Overview
+
+Create mailboxes on your own domain and manage messages in a browser. The frontend and API run on one Cloudflare Worker. Incoming messages enter through Cloudflare Email Routing, with data stored in D1 and KV.
+
+Cloud Mail suits personal domain email, small teams and self-hosting experiments. Check the quotas, pricing and domain requirements of Cloudflare and your sending provider before deploying.
 
 ## Features
 
-- **💰 Low-Cost Usage**: No server required — deploy to Cloudflare Workers to reduce costs.
+| Capability | Description |
+| --- | --- |
+| Domain mailboxes | Multiple addresses, receiving, search, stars and attachments |
+| Outbound email | Resend integration; separate domain verification and service configuration required |
+| Administration | Users, roles, mailbox limits and sending quotas |
+| Responsive interface | Vue 3 and Element Plus for desktop and mobile browsers |
+| Notifications | Optional Telegram notifications and email forwarding |
+| Automation | Open API, Workers AI verification-code extraction and statistics |
+| Site settings | Custom title, login background and Turnstile integration |
 
-- **💻 Responsive Design**: Automatically adapts to both desktop and most mobile browsers.
+Optional features require their own bindings, credentials and application settings. Successful receiving does not verify outbound delivery, AI or notifications.
 
-- **📧 Email Sending**: Integrated with Resend, supporting bulk email sending and attachments.
+## Preview
 
-- **🛡️ Admin Features**: Admin controls for user and email management with RBAC-based access control.
+These screenshots are provided by upstream. The deployed interface depends on version and configuration.
 
-- **📦 Attachment Support**: Send and receive attachments, stored and downloaded via R2 object storage.
+| Preview 1 | Preview 2 |
+| --- | --- |
+| ![Cloud Mail preview 1](doc/demo/demo1.png) | ![Cloud Mail preview 2](doc/demo/demo2.png) |
 
-- **🔔 Email Push**: Forward received emails to Telegram bots or other email providers.
+<details>
+<summary>More screenshots</summary>
 
-- **📡 Open API**: Supports batch user creation via API and multi-condition email queries
+| Preview 3 | Preview 4 |
+| --- | --- |
+| ![Cloud Mail preview 3](doc/demo/demo3.png) | ![Cloud Mail preview 4](doc/demo/demo4.png) |
 
-- **🔢 Verification Code Recognition**: Auto-detect codes via Workers AI
+</details>
 
-- **📈 Data Visualization**: Use ECharts to visualize system data, including user email growth.
+## Getting started
 
-- **🎨 Personalization**: Customize website title, login background, and transparency.
+1. Prepare a Cloudflare-managed domain, Workers, D1 and KV.
+2. Follow the [deployment guide](docs/deployment.md) to configure bindings, runtime secrets and build commands.
+3. Initialize the database, register the administrator and route incoming email to the Worker.
+4. Send a message from an external mailbox to verify receiving before enabling optional features.
 
-- **🤖 CAPTCHA**: Integrated with Turnstile CAPTCHA to prevent automated registration.
+Your website and email domains may differ: `mail.example.com` for the website and `name@example.com` for email.
 
-- **📜 More Features**: Under development...
+The fork's [wrangler.toml](mail-worker/wrangler.toml) contains the maintainer's deployment resources. Replace its domains, administrator address, D1 ID and KV ID before deploying to another account. Configure secrets through Cloudflare Secrets.
 
-## Tech Stack
+## Documentation
 
-- **Platform**: [Cloudflare Workers](https://developers.cloudflare.com/workers/)
+The detailed deployment and operations guides are currently written in Chinese.
 
-- **Web Framework**: [Hono](https://hono.dev/)
+| Topic | Guide |
+| --- | --- |
+| Initial deployment | [Deployment](docs/deployment.md) |
+| Bindings, domains and credentials | [Configuration](docs/configuration.md) |
+| Deployment and receiving errors | [Troubleshooting and FAQ](docs/troubleshooting.md) |
+| Upstream updates and backups | [Maintenance](docs/maintenance.md) |
+| Issues and pull requests | [Contributing](CONTRIBUTING.md) |
+| Security reports | [Security](SECURITY.md) |
 
-- **ORM**: [Drizzle](https://orm.drizzle.team/)
+See [upstream documentation](https://doc.skymail.ink/) for additional integrations. The [upstream demo](https://skymail.ink) is operated by upstream; do not use it for private messages.
 
-- **Frontend Framework**: [Vue3](https://vuejs.org/)
+## Repository layout
 
-- **UI Framework**: [Element Plus](https://element-plus.org/)
+| Path | Purpose |
+| --- | --- |
+| [mail-worker/](mail-worker/) | Hono API, email processing, Drizzle and Wrangler configuration |
+| [mail-vue/](mail-vue/) | Vue 3, Vite, Element Plus and frontend pages |
+| [docs/](docs/) | Fork deployment and operations documentation |
+| [doc/](doc/) | Upstream screenshots and images |
+| [.github/](.github/) | Deployment workflow and contribution templates |
 
-- **Email Service**: [Resend](https://resend.com/)
+Cloudflare Workers hosts the application. D1 stores structured data; KV handles caching and default attachment storage. R2 is optional. Receiving and sending are separate flows; see [configuration](docs/configuration.md).
 
-- **Cache**: [Cloudflare KV](https://developers.cloudflare.com/kv/)
+## Contributing and attribution
 
-- **Database**: [Cloudflare D1](https://developers.cloudflare.com/d1/)
+Report fork-specific issues through [this repository's issue tracker](https://github.com/chenran71ran-oss/cloud-mail/issues). Read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting changes.
 
-- **File Storage**: [Cloudflare R2](https://developers.cloudflare.com/r2/)
-
-## Project Structure
-
-```
-cloud-mail
-├── mail-worker				    # Backend worker project
-│   ├── src                  
-│   │   ├── api	 			    # API layer
-│   │   ├── const  			    # Project constants
-│   │   ├── dao                 # Data access layer
-│   │   ├── email			    # Email processing and handling
-│   │   ├── entity			    # Database entities
-│   │   ├── error			    # Custom exceptions
-│   │   ├── hono			    # Web framework, middleware, error handling
-│   │   ├── i18n			    # Internationalization
-│   │   ├── init			    # Database and cache initialization
-│   │   ├── model			    # Response data models
-│   │   ├── security			# Authentication and authorization
-│   │   ├── service			    # Business logic layer
-│   │   ├── template			# Message templates
-│   │   ├── utils			    # Utility functions
-│   │   └── index.js			# Entry point
-│   ├── package.json			# Project dependencies
-│   └── wrangler.toml			# Project configuration
-│
-├─ mail-vue				        # Frontend Vue project
-│   ├── src
-│   │   ├── axios 			    # Axios configuration
-│   │   ├── components			# Custom components
-│   │   ├── echarts			    # ECharts integration
-│   │   ├── i18n			    # Internationalization
-│   │   ├── init			    # Startup initialization
-│   │   ├── layout			    # Main layout components
-│   │   ├── perm			    # Permissions and access control
-│   │   ├── request			    # API request layer
-│   │   ├── router			    # Router configuration
-│   │   ├── store			    # Global state management
-│   │   ├── utils			    # Utility functions
-│   │   ├── views			    # Page components
-│   │   ├── app.vue			    # Root component
-│   │   ├── main.js			    # Entry JS file
-│   │   └── style.css			# Global styles
-│   ├── package.json			# Project dependencies
-└── └── env.release				# Environment configuration
-
-```
-
-## Sponsor
-
-<a href="https://doc.skymail.ink/support.html">
-<img width="170px" src="./doc/images/support.png" alt="">
-</a>
+Thanks to the original authors and contributors of [maillab/cloud-mail](https://github.com/maillab/cloud-mail). Upstream community and support links are available in the [upstream documentation](https://doc.skymail.ink/).
 
 ## License
 
-This project is licensed under the [MIT](LICENSE) license.
-
-## Communication
-
-[Telegram](https://t.me/cloud_mail_tg)
+[MIT License](LICENSE), retaining the original `Copyright (c) 2025 aslost` notice. Include the license and copyright notice when redistributing.
