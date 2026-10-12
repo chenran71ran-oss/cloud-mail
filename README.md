@@ -50,14 +50,14 @@
 以下为上游提供的界面截图，具体页面随版本与配置变化。
 
 | 界面预览 1 | 界面预览 2 |
-| --- | --- |
+| :---: | :---: |
 | ![Cloud Mail 界面预览 1](doc/demo/demo1.png) | ![Cloud Mail 界面预览 2](doc/demo/demo2.png) |
 
 <details>
 <summary>查看更多截图</summary>
 
 | 界面预览 3 | 界面预览 4 |
-| --- | --- |
+| :---: | :---: |
 | ![Cloud Mail 界面预览 3](doc/demo/demo3.png) | ![Cloud Mail 界面预览 4](doc/demo/demo4.png) |
 
 </details>
@@ -77,9 +77,11 @@
 
 | 你想做什么 | 阅读入口 |
 | --- | --- |
+| 了解运行架构与功能边界 | [架构说明](docs/architecture.md) |
 | 从零部署 | [部署指南](docs/deployment.md) |
 | 了解绑定、域名与密钥 | [配置说明](docs/configuration.md) |
 | 解决部署或收信错误 | [故障排查与 FAQ](docs/troubleshooting.md) |
+| 检查是否真正完成上线 | [验收清单](docs/acceptance.md) |
 | 同步上游与维护实例 | [维护指南](docs/maintenance.md) |
 | 提交问题或代码 | [贡献指南](CONTRIBUTING.md) |
 | 报告安全问题 | [安全说明](SECURITY.md) |

@@ -50,14 +50,14 @@ Optional features require their own bindings, credentials and application settin
 These screenshots are provided by upstream. The deployed interface depends on version and configuration.
 
 | Preview 1 | Preview 2 |
-| --- | --- |
+| :---: | :---: |
 | ![Cloud Mail preview 1](doc/demo/demo1.png) | ![Cloud Mail preview 2](doc/demo/demo2.png) |
 
 <details>
 <summary>More screenshots</summary>
 
 | Preview 3 | Preview 4 |
-| --- | --- |
+| :---: | :---: |
 | ![Cloud Mail preview 3](doc/demo/demo3.png) | ![Cloud Mail preview 4](doc/demo/demo4.png) |
 
 </details>
@@ -79,9 +79,11 @@ The detailed deployment and operations guides are currently written in Chinese.
 
 | Topic | Guide |
 | --- | --- |
+| Architecture and limitations | [Architecture](docs/architecture.md) |
 | Initial deployment | [Deployment](docs/deployment.md) |
 | Bindings, domains and credentials | [Configuration](docs/configuration.md) |
 | Deployment and receiving errors | [Troubleshooting and FAQ](docs/troubleshooting.md) |
+| Verify a deployment | [Acceptance checklist](docs/acceptance.md) |
 | Upstream updates and backups | [Maintenance](docs/maintenance.md) |
 | Issues and pull requests | [Contributing](CONTRIBUTING.md) |
 | Security reports | [Security](SECURITY.md) |

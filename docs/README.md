@@ -8,9 +8,11 @@
 
 | 场景 | 文档 |
 | --- | --- |
+| 了解模块关系与功能边界 | [架构说明](architecture.md) |
 | 第一次部署 | [部署指南](deployment.md) |
 | 不知道某个变量怎么填 | [配置说明](configuration.md) |
 | 构建失败、绑定失败或收不到邮件 | [故障排查与 FAQ](troubleshooting.md) |
+| 检查是否完成上线 | [验收清单](acceptance.md) |
 | 已部署，准备备份或升级 | [维护指南](maintenance.md) |
 | 想改代码或文档 | [贡献指南](../CONTRIBUTING.md) |
 
