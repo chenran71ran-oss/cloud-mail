@@ -2,7 +2,7 @@
 
 [文档中心](README.md) · [配置说明](configuration.md) · [故障排查](troubleshooting.md)
 
-本文以 **Cloudflare Workers Builds 连接 GitHub** 为主要路径。已正常运行的实例无需重新创建数据库或重复初始化。
+本文以 **Cloudflare Workers Builds 连接 GitHub** 为主要路径。已正常运行的实例无需重新创建数据库；版本升级涉及新字段时，需先备份并按 [升级说明](upstream-sync-2026-10-24.md) 执行相应迁移。
 
 ## 目录
 

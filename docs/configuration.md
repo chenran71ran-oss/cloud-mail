@@ -54,7 +54,9 @@ GitHub Actions 的其他主要参数：
 | `D1_DATABASE_ID` | 已有 D1 的 ID，建议显式设置 |
 | `KV_NAMESPACE_ID` | 已有 KV 的 ID，建议显式设置 |
 | `R2_BUCKET_NAME` | 可选 R2 存储桶 |
-| `CF_EMAIL` | 可选 Cloudflare 发信绑定开关，需确认账户支持 |
+| `EMAIL` | 当前 Actions 的可选 Cloudflare 发信绑定参数；非空即添加绑定，需确认账户支持 |
+
+上游本轮将 Actions 参数从 `CF_EMAIL` 改为 `EMAIL`。使用 Resend 时保持 `EMAIL` 未设置；不要填写字符串 `false`，因为当前工作流按“是否非空”判断。该变化不影响直接使用 `wrangler.toml` 的 Workers Builds 路径。
 
 完整可选项与替换规则以 [工作流源码](../.github/workflows/deploy-cloudflare.yml) 为准。不要把 GitHub 部署令牌当成应用登录密码。
 

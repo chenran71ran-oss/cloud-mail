@@ -25,6 +25,8 @@
 
 > 本仓库是 [maillab/cloud-mail](https://github.com/maillab/cloud-mail) 的个人维护分支，由 [chenran71ran-oss](https://github.com/chenran71ran-oss/cloud-mail) 维护部署配置与文档。核心功能来自上游，原作者署名与 MIT 许可证完整保留。
 
+本分支已整合上游 3.4.0 及后续更新；已有实例升级请先阅读 [本次同步与数据库迁移说明](docs/upstream-sync-2026-10-24.md)。
+
 ## 为什么选择 Cloud Mail
 
 用自己的域名创建邮箱，通过浏览器管理邮件，无需自行维护传统邮件服务器。前端与 API 部署到同一个 Worker，邮件经 Cloudflare Email Routing 进入应用，数据存储在 D1 与 KV 中。
@@ -35,8 +37,8 @@
 
 | 能力 | 说明 |
 | --- | --- |
-| 域名邮箱 | 多邮箱管理、收件、搜索、收藏与附件处理 |
-| 邮件发送 | 集成 Resend；发信需要单独验证域名与配置服务 |
+| 域名邮箱 | 多邮箱管理、高级搜索与关键词高亮、收藏与附件处理 |
+| 邮件发送 | 集成 Cloudflare Email 与 Resend，支持分别发送；发信需要单独配置服务 |
 | 管理后台 | 用户管理、角色权限、邮箱数量和发信额度控制 |
 | 响应式界面 | Vue 3 与 Element Plus，适配桌面和移动浏览器 |
 | 通知与转发 | Telegram 通知、邮件转发等可选集成 |
@@ -51,14 +53,14 @@
 
 | 界面预览 1 | 界面预览 2 |
 | :---: | :---: |
-| ![Cloud Mail 界面预览 1](doc/demo/demo1.png) | ![Cloud Mail 界面预览 2](doc/demo/demo2.png) |
+| ![Cloud Mail 界面预览 1](doc/demo/demo.jpg) | ![Cloud Mail 界面预览 2](doc/demo/demo1.jpg) |
 
 <details>
 <summary>查看更多截图</summary>
 
 | 界面预览 3 | 界面预览 4 |
 | :---: | :---: |
-| ![Cloud Mail 界面预览 3](doc/demo/demo3.png) | ![Cloud Mail 界面预览 4](doc/demo/demo4.png) |
+| ![Cloud Mail 界面预览 3](doc/demo/demo2.jpg) | ![Cloud Mail 界面预览 4](doc/demo/demo3.jpg) |
 
 </details>
 

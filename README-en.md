@@ -25,6 +25,8 @@
 
 > This repository is a personal fork of [maillab/cloud-mail](https://github.com/maillab/cloud-mail). [chenran71ran-oss](https://github.com/chenran71ran-oss/cloud-mail) maintains deployment configuration and documentation here. Core functionality comes from upstream; the original attribution and MIT license are preserved.
 
+This fork includes upstream 3.4.0 and subsequent updates. Existing deployments should read the [database migration and sync notes](docs/upstream-sync-2026-10-24.md) before upgrading.
+
 ## Overview
 
 Create mailboxes on your own domain and manage messages in a browser. The frontend and API run on one Cloudflare Worker. Incoming messages enter through Cloudflare Email Routing, with data stored in D1 and KV.
@@ -35,8 +37,8 @@ Cloud Mail suits personal domain email, small teams and self-hosting experiments
 
 | Capability | Description |
 | --- | --- |
-| Domain mailboxes | Multiple addresses, receiving, search, stars and attachments |
-| Outbound email | Resend integration; separate domain verification and service configuration required |
+| Domain mailboxes | Multiple addresses, advanced search, keyword highlighting, stars and attachments |
+| Outbound email | Cloudflare Email and Resend integration, including separate delivery; provider configuration required |
 | Administration | Users, roles, mailbox limits and sending quotas |
 | Responsive interface | Vue 3 and Element Plus for desktop and mobile browsers |
 | Notifications | Optional Telegram notifications and email forwarding |
@@ -51,14 +53,14 @@ These screenshots are provided by upstream. The deployed interface depends on ve
 
 | Preview 1 | Preview 2 |
 | :---: | :---: |
-| ![Cloud Mail preview 1](doc/demo/demo1.png) | ![Cloud Mail preview 2](doc/demo/demo2.png) |
+| ![Cloud Mail preview 1](doc/demo/en/demo.jpg) | ![Cloud Mail preview 2](doc/demo/en/demo1.jpg) |
 
 <details>
 <summary>More screenshots</summary>
 
 | Preview 3 | Preview 4 |
 | :---: | :---: |
-| ![Cloud Mail preview 3](doc/demo/demo3.png) | ![Cloud Mail preview 4](doc/demo/demo4.png) |
+| ![Cloud Mail preview 3](doc/demo/en/demo2.jpg) | ![Cloud Mail preview 4](doc/demo/en/demo3.jpg) |
 
 </details>
 
