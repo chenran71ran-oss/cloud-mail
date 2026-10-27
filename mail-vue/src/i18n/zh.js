@@ -165,7 +165,7 @@ const zh = {
     websiteReg: '用户注册',
     loginDomain: '隐藏登录域名',
     syncDelete: '同步删除',
-    syncDeleteDesc: '开启后收件箱和邮箱不再假删',
+    syncDeleteDesc: '开启后，用户删除的邮件、邮箱地址和账号会直接清除数据',
     multipleEmail: '多号模式',
     multipleEmailDesc: '开启后账号栏出现一个用户可以添加多个邮箱',
     customization: '个性化设置',

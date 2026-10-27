@@ -23,6 +23,8 @@ import domainUtils from '../utils/domain-uitls';
 import account from "../entity/account";
 import { att } from '../entity/att';
 import telegramService from './telegram-service';
+import webhookService from './webhook-service';
+import forwardMime from '../utils/forward-mime';
 
 const emailService = {
 
@@ -515,7 +517,8 @@ const emailService = {
 			: [sendParams.receiveEmail];
 		for (const receiveEmail of recipientGroups) {
 			const emailResult = await this.saveSentEmail(c, { ...saveParams, receiveEmail });
-			await this.HandleOnSiteEmail(c, receiveEmail, emailResult, emailResult.attList);
+			const emailRowList = await this.HandleOnSiteEmail(c, receiveEmail, emailResult, emailResult.attList);
+			await this.forwardOnSiteEmail(c, emailRowList, { sendParams: { ...sendParams, receiveEmail } });
 			yield { emails: [emailResult] };
 		}
 	},
@@ -922,10 +925,12 @@ const emailService = {
 
 		//保存邮件
 		const receiveEmailList = emailDataList.filter(emailRow => emailRow.status === emailConst.status.RECEIVE || emailRow.status === emailConst.status.NOONE);
+		const emailRowList = [];
 
 		for (const emailData of receiveEmailList) {
 
 			const emailRow = await orm(c).insert(email).values(emailData).returning().get();
+			emailRowList.push(emailRow);
 
 			//设置附件保存
 			for (const attRow of attList) {
@@ -952,6 +957,58 @@ const emailService = {
 		}
 
 		await orm(c).update(email).set({ status, message: message }).where(eq(email.emailId, sendEmailData.emailId)).run();
+
+		return emailRowList;
+	},
+
+	//站内邮件不经过 email 事件，在这里按转发规则推送
+	async forwardOnSiteEmail(c, emailRowList, { sendParams }) {
+
+		const { tgBotStatus, tgChatId, forwardStatus, forwardEmail, webhookStatus, webhookUrl, webhookRetry, webhookSecret, ruleEmail, ruleType } = await settingService.query(c);
+
+		if (ruleType === settingConst.ruleType.RULE) {
+			const emails = ruleEmail.split(',');
+			emailRowList = emailRowList.filter(emailRow => emails.includes(emailRow.toEmail));
+		}
+
+		for (const emailRow of emailRowList) {
+
+			//转发到TG
+			if (tgBotStatus === settingConst.tgBotStatus.OPEN && tgChatId) {
+				await telegramService.sendEmailToBot(c, emailRow);
+			}
+
+			//转发到 Webhook
+			if (webhookStatus === settingConst.webhookStatus.OPEN && webhookUrl) {
+				await webhookService.sendEmail(c, emailRow, webhookUrl, webhookRetry, webhookSecret);
+			}
+
+		}
+
+		//转发到其他邮箱。发件人用站内实际发件人，信头收件人保留原收件人，信封送到已验证地址。
+		if (forwardStatus === settingConst.forwardStatus.OPEN && forwardEmail && emailRowList.length > 0) {
+
+			const addresses = forwardEmail.split(',').map(address => address.trim()).filter(Boolean);
+			const params = {
+				...sendParams,
+				attachments: await this.toCloudflareAttachments(sendParams.attachments || []),
+				receiveEmail: emailRowList.map(row => ({ address: row.toEmail, name: row.toName || '' })).filter(item => item.address)
+			};
+
+			await Promise.all(addresses.map(async address => {
+
+				try {
+					const result = await forwardMime.send(c.env.forward, params, address);
+					if (result?.error) {
+						console.error(`转发邮箱 ${address} 失败：`, result.error);
+					}
+				} catch (e) {
+					console.error(`转发邮箱 ${address} 失败：`, e);
+				}
+
+			}));
+
+		}
 
 	},
 

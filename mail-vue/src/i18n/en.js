@@ -165,7 +165,7 @@ const en = {
     websiteReg: 'Sign up',
     loginDomain: 'Hide sign-in domain',
     syncDelete: 'Sync delete',
-    syncDeleteDesc: 'Permanently delete emails and email addresses instead of marking them as deleted.',
+    syncDeleteDesc: 'When enabled, emails, email addresses, and accounts deleted by users are permanently removed.',
     multipleEmail: 'Multiple email address',
     multipleEmailDesc: 'Enable this feature to allow users to add multiple addresses.',
     customization: 'Customization',
