@@ -80,3 +80,7 @@ GitHub Actions 的其他主要参数：
 本分支保存了维护者自己的域名与资源 ID，便于其持续部署。这些值不是通用模板。对外复制时替换它们，不要复用其他账户资源。
 
 API Token、JWT 密钥、邮箱密码、Resend Token、Turnstile Secret 和通知凭据应保持私密。工单中的日志也需要脱敏。
+
+## 站内邮件转发绑定
+
+自 2026-10-27 同步起，`wrangler.toml` 中的 `forward` 是独立的 `send_email` 绑定，用于将站内邮件转发到已验证的目标邮箱。它不替代 Resend 或 `email` 发信渠道。还需在应用中开启转发并设置规则，详见 [更新说明](upstream-sync-2026-10-27.md)。
